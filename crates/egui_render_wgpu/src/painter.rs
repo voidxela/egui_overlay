@@ -423,7 +423,6 @@ impl EguiPainter {
             };
             let data_color32 = match delta.image {
                 ImageData::Color(color_image) => color_image.pixels.clone(),
-                ImageData::Font(font_image) => font_image.srgba_pixels(None).collect::<Vec<_>>(),
             };
 
             let data_bytes: &[u8] = bytemuck::cast_slice(data_color32.as_slice());

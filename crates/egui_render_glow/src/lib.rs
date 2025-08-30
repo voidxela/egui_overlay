@@ -317,13 +317,6 @@ impl Painter {
                     c.pixels.iter().flat_map(egui::Color32::to_array).collect(),
                     c.size,
                 ),
-                egui::ImageData::Font(font_image) => (
-                    font_image
-                        .srgba_pixels(None)
-                        .flat_map(|c| c.to_array())
-                        .collect(),
-                    font_image.size,
-                ),
             };
             if let Some(pos) = delta.pos {
                 glow_context.tex_sub_image_2d(
