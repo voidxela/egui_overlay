@@ -156,10 +156,10 @@ impl<T: EguiOverlay + 'static> OverlayApp<T> {
                 user_data.run(egui_context, default_gfx_backend, glfw_backend)
             {
                 wait_events_duration = timeout.min(std::time::Duration::from_secs(1));
-                if !platform_output.copied_text.is_empty() {
-                    glfw_backend
-                        .window
-                        .set_clipboard_string(&platform_output.copied_text);
+                for command in &platform_output.commands {
+                    if let egui::output::OutputCommand::CopyText(text) = command {
+                        glfw_backend.window.set_clipboard_string(text);
+                    }
                 }
                 glfw_backend.set_cursor(platform_output.cursor_icon);
             } else {
